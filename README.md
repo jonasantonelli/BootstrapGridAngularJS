@@ -1,2 +1,2 @@
-Bootstrap Grid Dynaminc with Angular JS
+Bootstrap Grid Dynamic with Angular JS
 ==========
