@@ -1,2 +1,2 @@
-Html5Admin
+Bootstrap Grid Dynaminc with Angular JS
 ==========
