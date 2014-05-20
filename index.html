@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Dynamic Bootstrap Grid</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+
+<body>
+
+    <div ng-app="GridApp" ng-controller="GridController" class="container-fluid">
+        <div class="row" ng-repeat="rows in groups">
+            <div ng-repeat="row in rows" class="col-md-{{row.size}}">
+
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">col-md-{{ row.size }}</h3>
+                  </div>
+                  <div class="panel-body">
+                    Content
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+
+</body> 	
+
+</html>
