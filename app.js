@@ -5,45 +5,51 @@
     app.filter("breakAt", function () {
         return function (List, Size, Name) {
 
-            var i = 0;
-            var Total = 0;
-            var NewList = [];
-            var NewGroup = [];
-            var Max = List.length;
+           	var i = 0;			
+			var NewList = [];
+			var NewRow;
+			var Max = List.length;
+			var TempSize = 0;
 
-            while (NewList.length <= Max) {
+			while (NewList.length <= Max) {
 
-                if (i >= Max)
-                    break;
+				if (i >= Max)
+					break;
 
-                var Item = List[i];
-                var ItemSize = +Item[Name];
-                var NextItem = List[i + 1];
+				var Item = List[i];
+				var ItemSize = +Item[Name];
+				var NextItem = List[i + 1];
 
-                if (Total === 0) {
-                    NewGroup = [];
-                }
+				if(TempSize === 0){
+					NewRow = [];
+				}
 
-                if (Total < Size) {
+				if(TempSize <= Size)
+				{
+					NewRow.push(angular.copy(Item));
+					TempSize += +ItemSize;
+				}
 
-                    i++;
-                    Total += ItemSize;
-                    NewGroup.push(angular.copy(Item));
+				if(NextItem)
+				{
+					if( (TempSize + NextItem[Name])  > Size){
+						TempSize = 0;
+						NewList.push(angular.copy(NewRow));
+					}
+				}
+				else
+				{
+					TempSize = 0;
+					NewList.push(angular.copy(NewRow));
+				}
 
-                    if (NextItem) {
-                        Total += +NextItem[Name];
-                    }
-                }
 
-                if (Total >= Size) {
+				i++;
 
-                    NewList.push(angular.copy(NewGroup));
-                    Total = 0;
-                }
+			}
 
-            }
-
-            return NewList;
+        	return NewList;
+			
         };
     });
 
